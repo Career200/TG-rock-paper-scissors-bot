@@ -4,22 +4,24 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "start": "cd dist && node bot.js",
-    "dev": "tsx src/RPS_local.ts",
-    "dev:bot": "tsx src/bot.ts"
+  "engines": {
+    "node": "22.20.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "cd dist && node bot/main.js",
+    "local": "tsx src/RPSLocal.ts",
+    "dev:bot": "tsx src/bot.ts"
+  },
   "devDependencies": {
-    "@types/node": "^22.20.0",
+    "@types/node": "22.20.0",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "telegraf": "^4.16.3"
+    "grammy": "^1.44.0"
   }
 }
