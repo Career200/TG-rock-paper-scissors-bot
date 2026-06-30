@@ -1,32 +1,22 @@
-export type RPS = 'rock' | 'paper' | 'scissors'
-type DuelResult = 'User1' | 'User2' | 'Draw'
-class BotThrow {
-	hand: RPS
-	constructor() {
-		this.hand = <'rock' | 'paper' | 'scissors'>(
-			['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)]
-		)
-	}
-}
-export function RPSMatch(user1: RPS, user2: RPS): DuelResult {
-	if (user1 === user2) {
-		return 'Draw'
-	} else if (
-		(user1 === 'rock' && user2 === 'scissors') ||
-		(user1 === 'paper' && user2 === 'rock') ||
-		(user1 === 'scissors' && user2 === 'paper')
-	) {
-		return 'User1'
-	} else {
-		return 'User2'
-	}
-}
-export function BotMatch(userThrow) {
-	let currentBotThrow: RPS = new BotThrow().hand
-	let currentBotMatch = RPSMatch(userThrow, currentBotThrow)
-	return currentBotMatch === 'Draw'
-		? ['Draw! Try again?', currentBotThrow]
-		: currentBotMatch === 'User1'
-		? ['You win!', currentBotThrow]
-		: ['Bot wins, sorry', currentBotThrow]
-}
+export const RPSArr = ["rock", "paper", "scissors"] as const;
+
+type options = (typeof RPSArr)[number];
+
+const beats = {
+  rock: "scissors",
+  paper: "rock",
+  scissors: "paper"
+};
+
+export const RPSMatch = (user1: options, user2: options) => {
+  if (user1 === user2) {
+    return "It's a tie!";
+  } else if (beats[user1] === user2) {
+    return "User 1 wins!";
+  } else {
+    return "User 2 wins!";
+  }
+};
+
+export const SoloMatch = (userThrow: options) =>
+  RPSMatch(userThrow, RPSArr[Math.floor(Math.random() * 3)]);
