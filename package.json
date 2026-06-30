@@ -12,9 +12,9 @@
   "license": "ISC",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "start": "cd dist && node bot/main.js",
+    "start": "node --env-file=.env dist/bot/main.js",
     "local": "tsx src/RPSLocal.ts",
-    "dev:bot": "tsx src/bot.ts"
+    "dev": "tsx watch --env-file=.env src/bot/main.ts"
   },
   "devDependencies": {
     "@types/node": "22.20.0",
