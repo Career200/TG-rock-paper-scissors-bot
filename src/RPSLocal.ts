@@ -1,4 +1,4 @@
-import { RPSArr, RPSMatch } from "./RPSLogic.js";
+import { RPSArr, RPSMatch } from "./logic/RPSMatch.js";
 
 const CLItest = () => {
   const user1 = RPSArr[Math.floor(Math.random() * 3)];
