@@ -8,3 +8,4 @@ Supposed features:
 
 Deploy? In progress.
 
+Also thinking of bundling a bunch of handy stuff under one bot (add a coinflip, dice roll or random number generator, etc). Under this one I mean.

@@ -2,7 +2,9 @@
   "compilerOptions": {
     "module": "NodeNext",
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "erasableSyntaxOnly": true,
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
