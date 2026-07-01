@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "test": "node --test",
+    "build": "npm test && tsc -p tsconfig.build.json",
     "start": "node --env-file=.env dist/bot/main.js",
     "local": "tsx src/RPSLocal.ts",
     "dev": "tsx watch --env-file=.env src/bot/main.ts"

@@ -1,5 +1,5 @@
 import { Bot } from "grammy";
-import { SoloMatch } from "../logic/RPSMatch.js";
+import { SoloMatch } from "../logic/RPSMatch.ts";
 
 const TOKEN = process.env.BOT_TOKEN;
 if (!TOKEN) {
