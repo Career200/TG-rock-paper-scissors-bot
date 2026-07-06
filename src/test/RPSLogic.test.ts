@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 
-import { RPSMatch } from "../logic/RPSMatch.ts";
+import { RPSMatch } from "../logic/main.ts";
 
 describe("RPSMatch", () => {
   it("should return 'It's a tie!' when both users throw the same option", () => {

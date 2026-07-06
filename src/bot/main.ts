@@ -1,20 +1,13 @@
-import { Bot } from "grammy";
-import { SoloMatch } from "../logic/RPSMatch.ts";
+import { bot } from "./core.ts";
 
-const TOKEN = process.env.BOT_TOKEN;
-if (!TOKEN) {
-  throw new Error("BOT_TOKEN is not defined in the environment variables.");
-}
-
-const emojiTextLookup = {
-  rock: "🗿",
-  paper: "📃",
-  scissors: "✂️"
-};
-
-const bot = new Bot(TOKEN);
-
-bot.on("message", (ctx) => ctx.reply("Bot is up!"));
+import "./modes/chat.ts";
 
 console.log("Bot is starting...");
+
+if (process.env.MODE === "development") {
+  bot.on("message", async (ctx) => {
+    console.log(`Received message: ${ctx.message.text}`);
+  });
+}
+
 bot.start();
