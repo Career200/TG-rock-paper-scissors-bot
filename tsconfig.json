@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "module": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "skipLibCheck": true,
     "rootDir": "src",
     "outDir": "dist",
     "erasableSyntaxOnly": true,
