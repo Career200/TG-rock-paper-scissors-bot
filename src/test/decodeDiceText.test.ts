@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 
-import { decodeDiceText } from "../logic/main.ts";
+import { decodeDiceText } from "../logic/index.ts";
 
 describe("decodeDiceText", () => {
   it("should decode valid dice notation correctly", () => {

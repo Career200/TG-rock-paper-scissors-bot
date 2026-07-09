@@ -1,13 +1,18 @@
 import {
   diceNotationRegex,
   decodeDiceText,
-  getDiceThrows
-} from "../../logic/main.ts";
+  getDiceThrows,
+  rpsRegex,
+  soloMatch,
+  rpsArr,
+  rpsOption
+} from "../../logic/index.ts";
 import {
   helpText,
   getCoinFlipResultText,
   getRandomResultText,
-  getDiceResultText
+  getDiceResultText,
+  getRpsText
 } from "../../common.ts";
 import { bot } from "../core.ts";
 
@@ -59,4 +64,24 @@ bot.on(":text").hears(diceNotationRegex, async (ctx) => {
   const throws = getDiceThrows(amount, diceType);
 
   await replyWithMarkdown(ctx, getDiceResultText(amount, diceType, throws));
+});
+
+bot.on(":text").hears(rpsRegex, async (ctx) => {
+  if (!ctx.message?.text) return; // not possible from hears - type guard
+
+  const match = ctx.message.text.match(rpsRegex);
+  if (!match || !rpsArr.includes(match[1] as rpsOption)) return;
+
+  const userThrow = match[1] as rpsOption;
+
+  const { result, botThrow } = soloMatch(userThrow);
+
+  await replyWithMarkdown(
+    ctx,
+    getRpsText(
+      result,
+      { name: "user", option: userThrow },
+      { name: "bot", option: botThrow }
+    )
+  );
 });

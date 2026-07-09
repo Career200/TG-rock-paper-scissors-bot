@@ -13,10 +13,10 @@
   "scripts": {
     "test": "node --test",
     "build": "npm test && tsc -p tsconfig.build.json",
-    "start": "node --env-file=.env dist/bot/main.js",
+    "start": "node --env-file=.env dist/bot/index.js",
     "local:rps": "tsx src/local/rps.ts",
     "local:r": "tsx src/local/random.ts",
-    "dev": "tsx watch --env-file=.env src/bot/main.ts"
+    "dev": "tsx watch --env-file=.env src/bot/index.ts"
   },
   "devDependencies": {
     "@types/node": "22.20.0",

@@ -8,7 +8,7 @@ import {
   diceNotationRegex,
   decodeDiceText,
   getDiceThrows
-} from "../logic/main.ts";
+} from "../logic/index.ts";
 
 const randTest = (msg: string) => {
   if (msg === "flip") {

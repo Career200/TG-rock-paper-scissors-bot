@@ -5,14 +5,21 @@ function normalizeNumber(n?: number, defaultTo?: number) {
 }
 
 export const diceNotationRegex = /^(\d+)?d(\d+)?$/i;
+export const rpsRegex = /^(rock|paper|scissors)$/i;
 
 const ROCK = "rock";
 const PAPER = "paper";
 const SCISSORS = "scissors";
 
-export const RPSArr = [ROCK, PAPER, SCISSORS] as const;
+export const rpsArr = [ROCK, PAPER, SCISSORS] as const;
 
-export type rpsOptions = (typeof RPSArr)[number];
+export type rpsOption = (typeof rpsArr)[number];
+
+const beats = {
+  rock: SCISSORS,
+  paper: ROCK,
+  scissors: PAPER
+};
 
 export const getCoinflip = () => (Math.random() < 0.5 ? "Heads" : "Tails");
 
@@ -53,21 +60,22 @@ export const getDiceThrows = (first?: number, second?: number) => {
   );
 };
 
-const beats = {
-  rock: "scissors",
-  paper: "rock",
-  scissors: "paper"
-};
-
-export const RPSMatch = (user1: rpsOptions, user2: rpsOptions) => {
+/**
+ * Runs rps between args, returns 0 for tie, 1 for user1 win, 2 for user2 win.
+ */
+export const rpsGame = (user1: rpsOption, user2: rpsOption) => {
   if (user1 === user2) {
-    return "It's a tie!";
+    return 0;
   } else if (beats[user1] === user2) {
-    return "User 1 wins!";
+    return 1;
   } else {
-    return "User 2 wins!";
+    return 2;
   }
 };
 
-export const SoloMatch = (userThrow: rpsOptions) =>
-  RPSMatch(userThrow, RPSArr[Math.floor(Math.random() * 3)]);
+export const soloMatch = (userThrow: rpsOption) => {
+  const botThrow = rpsArr[Math.floor(Math.random() * 3)];
+  const result = rpsGame(userThrow, botThrow);
+
+  return { result, userThrow, botThrow } as const;
+};
