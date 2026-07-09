@@ -1,4 +1,4 @@
-import { getCoinflip, getRandom, rpsOption } from "./logic/index.ts";
+import { getCoinflip, getRandom, type rpsOption } from "./logic/index.ts";
 
 export const emojiTextLookup = {
   flip: "🪙",

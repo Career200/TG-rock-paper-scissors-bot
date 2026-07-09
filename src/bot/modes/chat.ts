@@ -5,7 +5,7 @@ import {
   rpsRegex,
   soloMatch,
   rpsArr,
-  rpsOption
+  type rpsOption
 } from "../../logic/index.ts";
 import {
   helpText,
