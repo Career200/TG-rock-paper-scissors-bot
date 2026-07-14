@@ -1,5 +1,4 @@
-import { InlineQueryResultBuilder } from "grammy";
-import { bot } from "../core.ts";
+import { InlineQueryResultBuilder, type Bot } from "grammy";
 import { getCoinflip } from "../../logic/index.ts";
 import { emojiTextLookup } from "../../common.ts";
 
@@ -31,26 +30,28 @@ const inlineQueryResults = {
 
 const allInlineQueryResults = Object.values(inlineQueryResults);
 
-bot.inlineQuery(/flip/, async (ctx) => {
-  const res = inlineQueryResults.flip;
+export const registerInlineHandlers = (bot: Bot) => {
+  bot.inlineQuery(/flip/, async (ctx) => {
+    const res = inlineQueryResults.flip;
 
-  await ctx.answerInlineQuery([res]);
-});
+    await ctx.answerInlineQuery([res]);
+  });
 
-/* inline "autofill" buttons */
-bot.on("inline_query", async (ctx) => {
-  const query = ctx.inlineQuery.query.trim().toLowerCase();
-  console.log(`Received inline query: ${query}`);
+  /* inline "autofill" buttons */
+  bot.on("inline_query", async (ctx) => {
+    const query = ctx.inlineQuery.query.trim().toLowerCase();
+    console.log(`Received inline query: ${query}`);
 
-  if (!query) {
-    return ctx.answerInlineQuery(allInlineQueryResults);
-  }
+    if (!query) {
+      return ctx.answerInlineQuery(allInlineQueryResults);
+    }
 
-  const filteredOptions = inlineOptions.filter((option) =>
-    option.startsWith(query)
-  );
+    const filteredOptions = inlineOptions.filter((option) =>
+      option.startsWith(query)
+    );
 
-  const results = filteredOptions.map((option) => inlineQueryResults[option]);
+    const results = filteredOptions.map((option) => inlineQueryResults[option]);
 
-  return ctx.answerInlineQuery(results);
-});
+    return ctx.answerInlineQuery(results);
+  });
+};

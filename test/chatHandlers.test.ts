@@ -1,11 +1,9 @@
-import { describe, it } from "node:test";
-import assert from "node:assert";
+import { describe, it, expect } from "vitest";
 import type { Update } from "grammy/types";
 
-process.env.BOT_TOKEN ??= "test-token";
+import { createBot } from "../src/bot/core.ts";
 
-const { bot } = await import("../bot/core.ts");
-await import("../bot/modes/chat.ts");
+const bot = createBot("test-token");
 
 // Skip the network call on bot.init()
 bot.botInfo = {
@@ -46,13 +44,9 @@ describe("chat handlers", () => {
 
     await bot.handleUpdate(makeTextUpdate("rock"));
 
-    assert.strictEqual(
-      calls.length,
-      1,
-      "expected exactly one handler to reply"
-    );
-    assert.strictEqual(calls[0].method, "sendRichMessage");
+    expect(calls.length, "expected exactly one handler to reply").toBe(1);
+    expect(calls[0].method).toBe("sendRichMessage");
     const markdown = (calls[0].payload as any).rich_message.markdown as string;
-    assert.match(markdown, /wins!|draw/i);
+    expect(markdown).toMatch(/wins!|draw/i);
   });
 });
