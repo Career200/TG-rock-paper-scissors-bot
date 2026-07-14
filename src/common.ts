@@ -38,12 +38,10 @@ export const getRpsText = (
 ) => {
   if (gameResult === 0) {
     return (
-      "It's a __draw__!" +
-      user1.name +
-      user1.option +
-      "-" +
-      user2.option +
-      user2.name
+      "It's a __draw__! Both threw __" +
+      user1.option.toUpperCase() +
+      "__ " +
+      emojiTextLookup[user1.option]
     );
   }
 
