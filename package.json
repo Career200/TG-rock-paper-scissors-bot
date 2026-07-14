@@ -16,7 +16,8 @@
     "typecheck": "tsc -p tsconfig.json && tsc -p test/tsconfig.json",
     "local:rps": "tsx src/local/rps.ts",
     "local:r": "tsx src/local/random.ts",
-    "dev": "wrangler dev",
+    "dev": "node scripts/dev.mjs",
+    "dev:worker": "wrangler dev",
     "deploy": "wrangler deploy",
     "cf-typegen": "wrangler types"
   },
