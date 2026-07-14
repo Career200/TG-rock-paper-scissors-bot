@@ -20,9 +20,9 @@ The project structure is the default scaffold produced by `wrangler init` (a pla
 3. `npx wrangler login` (once, to authenticate with your Cloudflare account)
 4. Provide the token: for production, `npx wrangler secret put BOT_TOKEN`. For local dev, see [Local development](#local-development) below.
 5. Ship with `npm run deploy`.
-6. Register the production webhook once, pointing at your deployed Worker URL:
+6. Register the production webhook once, pointing at your deployed Worker URL. `allowed_updates` must list `guest_message` for guest-mode replies:
    ```bash
-   curl "https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<YOUR_WORKER_URL>"
+   curl "https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<YOUR_WORKER_URL>&allowed_updates=%5B%22message%22%2C%22guest_message%22%5D"
    ```
 
 See the [grammY Cloudflare Workers guide](https://grammy.dev/hosting/cloudflare-workers-nodejs) for more details on [debugging](https://grammy.dev/hosting/cloudflare-workers-nodejs#debugging-your-bot), and background on building a Cloudflare worker bot from scratch.
@@ -51,10 +51,11 @@ Running in dev mode (`MODE=development`) also logs every incoming `ctx.message` 
 
 Bot responds to user messages:
 
-1. Coinflip on "coin"/"flip"/"coinflip" or /coinflip
-2. Random number on "random [first number?] [second number?]" - 1-100 by default, 1-first when one specified, first-second with both
-3. Dice from dice notation - "d20" and "2d6" and so on
-4. Rock-paper-scissors - play with bot
+1. Help on "help"/"commands" or /help
+2. Coinflip on "coin"/"flip"/"coinflip" or /coinflip
+3. Random number on "random [first number?] [second number?]" - 1-100 by default, 1-first when one specified, first-second with both
+4. Dice from dice notation - "d20" and "2d6" and so on
+5. Rock-paper-scissors - play with bot
 
 Supposed features:
 1. Play with a friend in a convenient manner (bot remembers your figure and displays the result with notification when your call is answered)- WiP

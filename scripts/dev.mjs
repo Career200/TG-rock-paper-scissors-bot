@@ -37,8 +37,11 @@ async function waitForTunnel(timeoutMs = 15_000) {
 }
 
 async function registerWebhook(botToken, url) {
+  const allowedUpdates = encodeURIComponent(
+    JSON.stringify(["message", "guest_message"])
+  );
   const res = await fetch(
-    `https://api.telegram.org/bot${botToken}/setWebhook?url=${encodeURIComponent(url)}`
+    `https://api.telegram.org/bot${botToken}/setWebhook?url=${encodeURIComponent(url)}&allowed_updates=${allowedUpdates}`
   );
   const body = await res.json();
   if (!body.ok) {
