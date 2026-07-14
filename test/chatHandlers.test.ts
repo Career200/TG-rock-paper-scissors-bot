@@ -34,6 +34,24 @@ const makeTextUpdate = (text: string): Update => ({
   }
 });
 
+const makeGuestMessageUpdate = (text: string): Update => {
+  const mention = `@${bot.botInfo.username}`;
+  const fullText = `${mention} ${text}`;
+
+  return {
+    update_id: ++updateId,
+    guest_message: {
+      message_id: 1,
+      date: 0,
+      chat: { id: 1, type: "private", first_name: "Tester" },
+      from: { id: 1, is_bot: false, first_name: "Tester" },
+      text: fullText,
+      entities: [{ offset: 0, length: mention.length, type: "mention" }],
+      guest_query_id: "guest-query-1"
+    }
+  };
+};
+
 describe("chat handlers", () => {
   it("route 'rock' to the rps handler and return a result", async () => {
     const calls: { method: string; payload: unknown }[] = [];
@@ -47,6 +65,24 @@ describe("chat handlers", () => {
     expect(calls.length, "expected exactly one handler to reply").toBe(1);
     expect(calls[0].method).toBe("sendRichMessage");
     const markdown = (calls[0].payload as any).rich_message.markdown as string;
+    expect(markdown).toMatch(/wins!|draw/i);
+  });
+
+  it("route 'rock' from a guest message to answerGuestQuery", async () => {
+    const calls: { method: string; payload: unknown }[] = [];
+    bot.api.config.use((_prev, method, payload) => {
+      calls.push({ method, payload });
+      return Promise.resolve({ ok: true, result: true as any });
+    });
+
+    await bot.handleUpdate(makeGuestMessageUpdate("rock"));
+
+    expect(calls.length, "expected exactly one handler to reply").toBe(1);
+    expect(calls[0].method).toBe("answerGuestQuery");
+    const payload = calls[0].payload as any;
+    expect(payload.guest_query_id).toBe("guest-query-1");
+    const markdown = payload.result.input_message_content.rich_message
+      .markdown as string;
     expect(markdown).toMatch(/wins!|draw/i);
   });
 });

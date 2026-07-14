@@ -6,7 +6,7 @@ export const createBot = (token: string, isDev: boolean = false) => {
 
   if (isDev) {
     bot.use(async (ctx, next) => {
-      console.log(ctx.message);
+      console.log(ctx.message ?? ctx.guestMessage);
       await next();
     });
   }

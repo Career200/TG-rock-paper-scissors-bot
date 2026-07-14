@@ -20,9 +20,9 @@ The project structure is the default scaffold produced by `wrangler init` (a pla
 3. `npx wrangler login` (once, to authenticate with your Cloudflare account)
 4. Provide the token: for production, `npx wrangler secret put BOT_TOKEN`. For local dev, see [Local development](#local-development) below.
 5. Ship with `npm run deploy`.
-6. Register the production webhook once, pointing at your deployed Worker URL:
+6. Register the production webhook once, pointing at your deployed Worker URL. `allowed_updates` must list `guest_message` for guest-mode replies:
    ```bash
-   curl "https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<YOUR_WORKER_URL>"
+   curl "https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<YOUR_WORKER_URL>&allowed_updates=%5B%22message%22%2C%22guest_message%22%5D"
    ```
 
 See the [grammY Cloudflare Workers guide](https://grammy.dev/hosting/cloudflare-workers-nodejs) for more details on [debugging](https://grammy.dev/hosting/cloudflare-workers-nodejs#debugging-your-bot), and background on building a Cloudflare worker bot from scratch.
