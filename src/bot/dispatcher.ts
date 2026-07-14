@@ -7,6 +7,7 @@ import {
   type rpsOption
 } from "../logic/index.ts";
 import {
+  helpText,
   getCoinFlipResultText,
   getRandomResultText,
   getDiceResultText,
@@ -25,6 +26,10 @@ type Rule = {
 };
 
 const rules: Rule[] = [
+  {
+    regex: /^(?:help|commands)$/i,
+    handler: () => helpText
+  },
   {
     regex: /^(?:coin|flip|coinflip)$/i,
     handler: () => getCoinFlipResultText()

@@ -51,10 +51,11 @@ Running in dev mode (`MODE=development`) also logs every incoming `ctx.message` 
 
 Bot responds to user messages:
 
-1. Coinflip on "coin"/"flip"/"coinflip" or /coinflip
-2. Random number on "random [first number?] [second number?]" - 1-100 by default, 1-first when one specified, first-second with both
-3. Dice from dice notation - "d20" and "2d6" and so on
-4. Rock-paper-scissors - play with bot
+1. Help on "help"/"commands" or /help
+2. Coinflip on "coin"/"flip"/"coinflip" or /coinflip
+3. Random number on "random [first number?] [second number?]" - 1-100 by default, 1-first when one specified, first-second with both
+4. Dice from dice notation - "d20" and "2d6" and so on
+5. Rock-paper-scissors - play with bot
 
 Supposed features:
 1. Play with a friend in a convenient manner (bot remembers your figure and displays the result with notification when your call is answered)- WiP
