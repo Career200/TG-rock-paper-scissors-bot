@@ -15,10 +15,6 @@ Supposed features:
 3. Play with multiple users - ongoing discussion (is it really needed? Forces multiple rounds, pulling a straw is faster)
 4. Pull a straw.
 
-Deploy? In progress.
-
-Also thinking of bundling a bunch of handy stuff under one bot (add a coinflip, dice roll or random number generator, etc). Under this one I mean.
-
 
 ## Commands
 ### /help

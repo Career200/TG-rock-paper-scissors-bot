@@ -1,8 +1,10 @@
 import { Bot } from "grammy";
+import { registerChatHandlers } from "./modes/chat.ts";
 
-const TOKEN = process.env.BOT_TOKEN;
-if (!TOKEN) {
-  throw new Error("BOT_TOKEN is not defined in the environment variables.");
-}
+export const createBot = (token: string) => {
+  const bot = new Bot(token);
 
-export const bot = new Bot(TOKEN);
+  registerChatHandlers(bot);
+
+  return bot;
+};

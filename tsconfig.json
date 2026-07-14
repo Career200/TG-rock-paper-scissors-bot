@@ -4,10 +4,9 @@
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
-    "rootDir": "src",
-    "outDir": "dist",
+    "noEmit": true,
     "erasableSyntaxOnly": true,
     "types": ["node"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "worker-configuration.d.ts"]
 }
