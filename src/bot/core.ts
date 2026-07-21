@@ -1,5 +1,6 @@
 import { Bot } from "grammy";
-import { registerChatHandlers } from "./modes/chat.ts";
+import { registerStatelessHandlers } from "./handlers/stateless.ts";
+import { registerStatefulHandlers } from "./handlers/stateful.ts";
 
 export const createBot = (token: string, isDev: boolean = false) => {
   const bot = new Bot(token);
@@ -11,7 +12,8 @@ export const createBot = (token: string, isDev: boolean = false) => {
     });
   }
 
-  registerChatHandlers(bot);
+  registerStatelessHandlers(bot);
+  registerStatefulHandlers(bot);
 
   return bot;
 };
