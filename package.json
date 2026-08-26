@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "engines": {
-    "node": "22.20.0"
+    "node": "^22.20.0"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "pretypecheck": "npm run cf-typegen",
     "typecheck": "tsc -p tsconfig.json && tsc -p test/tsconfig.json",
     "local:rps": "tsx src/local/rps.ts",
     "local:r": "tsx src/local/random.ts",
