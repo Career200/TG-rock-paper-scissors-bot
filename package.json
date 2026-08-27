@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "engines": {
-    "node": "22.20.0"
+    "node": "^22.20.0"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "pretypecheck": "npm run cf-typegen",
     "typecheck": "tsc -p tsconfig.json && tsc -p test/tsconfig.json",
     "local:rps": "tsx src/local/rps.ts",
     "local:r": "tsx src/local/random.ts",
@@ -22,12 +23,12 @@
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.18.7",
+    "@cloudflare/vitest-pool-workers": "^0.22.0",
     "@types/node": "22.20.0",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "vitest": "^4.1.0",
-    "wrangler": "^4.110.0"
+    "wrangler": "^4.126.0"
   },
   "dependencies": {
     "grammy": "^1.44.0"
